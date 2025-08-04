@@ -7,11 +7,13 @@ namespace IpegamaGames
     {
 
         [SerializeField] private UpdateSubscriptionService _updateSubscriptionService;
+        [SerializeField] private AudioService _audioService;
         public override void InstallBindings()
         {
             Container.BindInterfacesTo<UnityLogger>().AsSingle().NonLazy();
             Container.BindInterfacesTo<UpdateSubscriptionService>().FromInstance(_updateSubscriptionService).AsSingle().NonLazy();
-            //Container.BindInterfacesTo<AudioService>().FromInstance(_audioService).AsSingle().NonLazy();
+            Container.BindInterfacesTo<AudioService>().FromInstance(_audioService).AsSingle().NonLazy();
+            Container.BindInterfacesTo<CommandFactory>().AsSingle().CopyIntoAllSubContainers().NonLazy();
         }
     }
 }
